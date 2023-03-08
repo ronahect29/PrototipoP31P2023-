@@ -32,7 +32,7 @@ public class frmMantenimientoUsuario extends javax.swing.JInternalFrame {
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
-        modelo.addColumn("nombre");
+        modelo.addColumn("Usuarios");
         modelo.addColumn("Contraseña");
         clsUsuario usuario = new clsUsuario();
         //VendedorDAO vendedorDAO = new VendedorDAO();
@@ -40,9 +40,9 @@ public class frmMantenimientoUsuario extends javax.swing.JInternalFrame {
         tablaUsuarios.setModel(modelo);
         String[] dato = new String[3];
         for (int i = 0; i < listaUsuarios.size(); i++) {
-            dato[0] = Integer.toString(listaUsuarios.get(i).getIdUsuario());
-            dato[1] = listaUsuarios.get(i).getNombreUsuario();
-            dato[2] = listaUsuarios.get(i).getContrasenaUsuario();
+            dato[0] = Integer.toString(listaUsuarios.get(i).getIdUsuarios());
+            dato[1] = listaUsuarios.get(i).getUsuario();
+            dato[2] = listaUsuarios.get(i).getPassword();
             modelo.addRow(dato);
         }       
     }
@@ -278,7 +278,7 @@ public class frmMantenimientoUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int registrosBorrados=0;
         clsUsuario usuario = new clsUsuario();
-        usuario.setIdUsuario(Integer.parseInt(txtbuscado.getText()));
+        usuario.setIdUsuarios(Integer.parseInt(txtbuscado.getText()));
         registrosBorrados=usuario.setBorrarUsuario(usuario);
         JOptionPane.showMessageDialog(null, "Registro Borrado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
@@ -288,8 +288,8 @@ public class frmMantenimientoUsuario extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         clsUsuario usuario = new clsUsuario();
-        usuario.setNombreUsuario(txtNombre.getText());
-        usuario.setContrasenaUsuario(txtContrasena.getText());
+        usuario.setUsuario(txtNombre.getText());
+        usuario.setPassword(txtContrasena.getText());
         usuario.setIngresarUsuario(usuario);
         JOptionPane.showMessageDialog(null, "Registro Ingresado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
@@ -301,19 +301,19 @@ public class frmMantenimientoUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         clsUsuario usuario = new clsUsuario();
         //usuario.setNombreUsuario(txtbuscado.getText());        
-        usuario.setIdUsuario(Integer.parseInt(txtbuscado.getText()));        
+        usuario.setIdUsuarios(Integer.parseInt(txtbuscado.getText()));        
         usuario = usuario.getBuscarInformacionUsuarioPorId(usuario);
         System.out.println("Usuario retornado:" + usuario);        
-        txtNombre.setText(usuario.getNombreUsuario());
-        txtContrasena.setText(usuario.getContrasenaUsuario());
+        txtNombre.setText(usuario.getUsuario());
+        txtContrasena.setText(usuario.getPassword());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
         clsUsuario usuario = new clsUsuario();
-        usuario.setIdUsuario(Integer.parseInt(txtbuscado.getText()));
-        usuario.setNombreUsuario(txtNombre.getText());
-        usuario.setContrasenaUsuario(txtContrasena.getText());
+        usuario.setIdUsuarios(Integer.parseInt(txtbuscado.getText()));
+        usuario.setUsuario(txtNombre.getText());
+        usuario.setPassword(txtContrasena.getText());
         usuario.setModificarUsuario(usuario);
         JOptionPane.showMessageDialog(null, "Registro Modificado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);        

@@ -6,7 +6,7 @@
 package vista;
 
 
-import controlador.clsUsuario;
+import controlador.clsClientes;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
+public class frmMantenimientoClientes extends javax.swing.JInternalFrame {
 
     public void llenadoDeCombos() {
         /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -31,23 +31,23 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
+        modelo.addColumn("idClientes");
         modelo.addColumn("nombre");
-        modelo.addColumn("Contraseña");
-        clsUsuario usuario = new clsUsuario();
+        modelo.addColumn("Nit");
+        clsClientes usuario = new clsClientes();
         //VendedorDAO vendedorDAO = new VendedorDAO();
-        List<clsUsuario> listaUsuarios = usuario.getListadoUsuarios();
-        tablaUsuarios.setModel(modelo);
+        List<clsClientes> listaclientes= usuario.getListadoClientes();
+        tablaClientes.setModel(modelo);
         String[] dato = new String[3];
-        for (int i = 0; i < listaUsuarios.size(); i++) {
-            dato[0] = Integer.toString(listaUsuarios.get(i).getIdUsuario());
-            dato[1] = listaUsuarios.get(i).getNombreUsuario();
-            dato[2] = listaUsuarios.get(i).getContrasenaUsuario();
+        for (int i = 0; i < listaclientes.size(); i++) {
+            dato[0] = Integer.toString(listaclientes.get(i).getIdClientes());
+            dato[1] = listaclientes.get(i).getNombre();
+            dato[2] = listaclientes.get(i).getNit();
             modelo.addRow(dato);
         }       
     }
 
-    public frmMantenimientoPeliculas() {
+    public frmMantenimientoClientes() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -74,7 +74,7 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaUsuarios = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
         txtContrasena = new javax.swing.JTextField();
         label5 = new javax.swing.JLabel();
         lb = new javax.swing.JLabel();
@@ -89,7 +89,7 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Mantenimiento Usuarios");
+        setTitle("Mantenimiento Clientes");
         setVisible(true);
 
         btnEliminar.setText("Eliminar");
@@ -124,7 +124,7 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
         });
 
         label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label3.setText("Nombre");
+        label3.setText("Nombre del cliente");
 
         txtNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -137,8 +137,8 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
             }
         });
 
-        tablaUsuarios.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -154,14 +154,14 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaUsuarios);
+        jScrollPane1.setViewportView(tablaClientes);
 
         txtContrasena.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtContrasena.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         txtContrasena.setOpaque(false);
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label5.setText("Contraseña");
+        label5.setText("Nit del cliente");
 
         lb.setForeground(new java.awt.Color(204, 204, 204));
         lb.setText(".");
@@ -228,9 +228,9 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label1)
-                        .addGap(294, 573, Short.MAX_VALUE))
+                        .addGap(294, 529, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -277,9 +277,9 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int registrosBorrados=0;
-        clsUsuario usuario = new clsUsuario();
-        usuario.setIdUsuario(Integer.parseInt(txtbuscado.getText()));
-        registrosBorrados=usuario.setBorrarUsuario(usuario);
+        clsClientes usuario = new  clsClientes ();
+        usuario.setIdClientes(Integer.parseInt(txtbuscado.getText()));
+        registrosBorrados=usuario.setBorrarClientes(usuario);
         JOptionPane.showMessageDialog(null, "Registro Borrado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
         llenadoDeTablas();
@@ -287,10 +287,10 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        clsUsuario usuario = new clsUsuario();
-        usuario.setNombreUsuario(txtNombre.getText());
-        usuario.setContrasenaUsuario(txtContrasena.getText());
-        usuario.setIngresarUsuario(usuario);
+         clsClientes  cliente = new  clsClientes ();
+        cliente.setNombre(txtNombre.getText());
+        cliente.setNit(txtContrasena.getText());
+        cliente.setIngresarCliente(cliente);
         JOptionPane.showMessageDialog(null, "Registro Ingresado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
         llenadoDeTablas();
@@ -299,22 +299,22 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        clsUsuario usuario = new clsUsuario();
+         clsClientes  cliente = new  clsClientes ();
         //usuario.setNombreUsuario(txtbuscado.getText());        
-        usuario.setIdUsuario(Integer.parseInt(txtbuscado.getText()));        
-        usuario = usuario.getBuscarInformacionUsuarioPorId(usuario);
-        System.out.println("Usuario retornado:" + usuario);        
-        txtNombre.setText(usuario.getNombreUsuario());
-        txtContrasena.setText(usuario.getContrasenaUsuario());
+        cliente .setIdClientes(Integer.parseInt(txtbuscado.getText()));        
+        cliente  = cliente .getBuscarInformacionClientePorId(cliente );
+        System.out.println("Cliente retornado:" + cliente );        
+        txtNombre.setText(cliente .getNombre());
+        txtContrasena.setText(cliente .getNit());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        clsUsuario usuario = new clsUsuario();
-        usuario.setIdUsuario(Integer.parseInt(txtbuscado.getText()));
-        usuario.setNombreUsuario(txtNombre.getText());
-        usuario.setContrasenaUsuario(txtContrasena.getText());
-        usuario.setModificarUsuario(usuario);
+         clsClientes  usuario = new  clsClientes ();
+        usuario.setIdClientes(Integer.parseInt(txtbuscado.getText()));
+        usuario.setNombre(txtNombre.getText());
+        usuario.setNit(txtContrasena.getText());
+        usuario.setModificarCliente(usuario);
         JOptionPane.showMessageDialog(null, "Registro Modificado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);        
         llenadoDeTablas();
@@ -384,7 +384,7 @@ public class frmMantenimientoPeliculas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
-    private javax.swing.JTable tablaUsuarios;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtbuscado;

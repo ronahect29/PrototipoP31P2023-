@@ -16,12 +16,12 @@ import java.util.List;
  */
 public class daoUsuario {
 
-    private static final String SQL_SELECT = "SELECT usuid, usunombre, usucontrasena FROM tbl_usuario";
-    private static final String SQL_INSERT = "INSERT INTO tbl_usuario(usunombre, usucontrasena) VALUES(?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_usuario SET usunombre=?, usucontrasena=? WHERE usuid = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_usuario WHERE usuid=?";
-    private static final String SQL_SELECT_NOMBRE = "SELECT usuid, usunombre, usucontrasena FROM tbl_usuario WHERE usunombre = ?";
-    private static final String SQL_SELECT_ID = "SELECT usuid, usunombre, usucontrasena FROM tbl_usuario WHERE usuid = ?";    
+    private static final String SQL_SELECT = "SELECT idUsuarios, Usuario, password,estado FROM usuarios";
+    private static final String SQL_INSERT = "INSERT INTO usuarios(Usuario, password) VALUES(?, ?)";
+    private static final String SQL_UPDATE = "UPDATE usuario SET Usuario=?, password=? WHERE idUsuarios= ?";
+    private static final String SQL_DELETE = "DELETE FROM Usuarios WHERE idUsuarios=?";
+    private static final String SQL_SELECT_NOMBRE = "SELECT idUsuarios, Usuario, password FROM Usuarios WHERE Usuario = ?";
+    private static final String SQL_SELECT_ID = "SELECT idUsuarios, Usuario, password FROM Usuario WHERE idUsuarios = ?";    
 
     public List<clsUsuario> consultaUsuarios() {
         Connection conn = null;
@@ -34,13 +34,13 @@ public class daoUsuario {
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("usuid");
-                String nombre = rs.getString("usunombre");
-                String contrasena = rs.getString("usucontrasena");
+                int id = rs.getInt("idUsuarios");
+                String nombre = rs.getString("Usuario");
+                String contrasena = rs.getString("Password");
                 clsUsuario usuario = new clsUsuario();
-                usuario.setIdUsuario(id);
-                usuario.setNombreUsuario(nombre);
-                usuario.setContrasenaUsuario(contrasena);
+                usuario.setIdUsuarios(id);
+                usuario.setUsuario(nombre);
+                usuario.setPassword(contrasena);
                 usuarios.add(usuario);
             }
         } catch (SQLException ex) {
@@ -60,8 +60,8 @@ public class daoUsuario {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, usuario.getNombreUsuario());
-            stmt.setString(2, usuario.getContrasenaUsuario());
+            stmt.setString(1, usuario.getUsuario());
+            stmt.setString(2, usuario.getPassword());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -84,9 +84,9 @@ public class daoUsuario {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, usuario.getNombreUsuario());
-            stmt.setString(2, usuario.getContrasenaUsuario());
-            stmt.setInt(3, usuario.getIdUsuario());
+            stmt.setString(1, usuario.getUsuario());
+            stmt.setString(2, usuario.getPassword());
+            stmt.setInt(3, usuario.getIdUsuarios());
 
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
@@ -110,7 +110,7 @@ public class daoUsuario {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, usuario.getIdUsuario());
+            stmt.setInt(1, usuario.getIdUsuarios());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -132,17 +132,17 @@ public class daoUsuario {
             System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + usuario);
             stmt = conn.prepareStatement(SQL_SELECT_NOMBRE);
             //stmt.setInt(1, usuario.getIdUsuario());            
-            stmt.setString(1, usuario.getNombreUsuario());
+            stmt.setString(1, usuario.getUsuario());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("usuid");
-                String nombre = rs.getString("usunombre");
-                String contrasena = rs.getString("usucontrasena");
+                int id = rs.getInt("idUsuarios");
+                String nombre = rs.getString("Usuario");
+                String contrasena = rs.getString("Password");
 
                 //usuario = new clsUsuario();
-                usuario.setIdUsuario(id);
-                usuario.setNombreUsuario(nombre);
-                usuario.setContrasenaUsuario(contrasena);
+                usuario.setIdUsuarios(id);
+                usuario.setUsuario(nombre);
+                usuario.setPassword(contrasena);
                 System.out.println(" registro consultado: " + usuario);                
             }
             //System.out.println("Registros buscado:" + persona);
@@ -165,18 +165,18 @@ public class daoUsuario {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + usuario);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setInt(1, usuario.getIdUsuario());            
+            stmt.setInt(1, usuario.getIdUsuarios());            
             //stmt.setString(1, usuario.getNombreUsuario());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("usuid");
-                String nombre = rs.getString("usunombre");
-                String contrasena = rs.getString("usucontrasena");
+                int id = rs.getInt("idUsuarios");
+                String nombre = rs.getString("Usuarios");
+                String contrasena = rs.getString("Password");
 
                 //usuario = new clsUsuario();
-                usuario.setIdUsuario(id);
-                usuario.setNombreUsuario(nombre);
-                usuario.setContrasenaUsuario(contrasena);
+                usuario.setIdUsuarios(id);
+                usuario.setUsuario(nombre);
+                usuario.setPassword(contrasena);
                 System.out.println(" registro consultado: " + usuario);                
             }
             //System.out.println("Registros buscado:" + persona);

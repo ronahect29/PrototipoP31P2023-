@@ -11,54 +11,55 @@ import modelo.daoUsuario;
  * @author visitante
  */
 public class clsUsuario {
-    private int IdUsuario;
-    private String NombreUsuario;
-    private String ContrasenaUsuario;
+    private int IdUsuarios;
+    private String Usuario;
+    private String Password;
+
+    public int getIdUsuarios() {
+        return IdUsuarios;
+    }
+
+    public void setIdUsuarios(int IdUsuarios) {
+        this.IdUsuarios = IdUsuarios;
+    }
+
+    public String getUsuario() {
+        return Usuario;
+    }
+
+    public void setUsuario(String Usuario) {
+        this.Usuario = Usuario;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String Password) {
+        this.Password = Password;
+    }
+
+    public clsUsuario(int IdUsuarios, String Usuario, String Password) {
+        this.IdUsuarios = IdUsuarios;
+        this.Usuario = Usuario;
+        this.Password = Password;
+    }
+
+    public clsUsuario(String Usuario, String Password) {
+        this.Usuario = Usuario;
+        this.Password = Password;
+    }
+
+    public clsUsuario(int IdUsuarios) {
+        this.IdUsuarios = IdUsuarios;
+    }
 
     public clsUsuario() {
     }
-    
-    public clsUsuario(int IdUsuario) {
-        this.IdUsuario = IdUsuario;
-    }    
-    
-    public clsUsuario(String NombreUsuario, String ContrasenaUsuario) {
-        this.NombreUsuario = NombreUsuario;
-        this.ContrasenaUsuario = ContrasenaUsuario;
-    }
-    
-    public clsUsuario(int IdUsuario, String NombreUsuario, String ContrasenaUsuario) {
-        this.IdUsuario = IdUsuario;
-        this.NombreUsuario = NombreUsuario;
-        this.ContrasenaUsuario = ContrasenaUsuario;
-    }    
 
-    public int getIdUsuario() {
-        return IdUsuario;
-    }
-
-    public void setIdUsuario(int IdUsuario) {
-        this.IdUsuario = IdUsuario;
-    }
-
-    public String getNombreUsuario() {
-        return NombreUsuario;
-    }
-
-    public void setNombreUsuario(String NombreUsuario) {
-        this.NombreUsuario = NombreUsuario;
-    }
-
-    public String getContrasenaUsuario() {
-        return ContrasenaUsuario;
-    }
-
-    public void setContrasenaUsuario(String ContrasenaUsuario) {
-        this.ContrasenaUsuario = ContrasenaUsuario;
-    }
     @Override
     public String toString() {
-        return "clsUsuario{" + "IdUsuario=" + IdUsuario + ", NombreUsuario=" + NombreUsuario + ", ContrasenaUsuario=" + ContrasenaUsuario + '}';
+        return "clsUsuario{" + "IdUsuario=" + IdUsuarios + ", Usuario=" + Usuario + ", Password=" + Password+ '}';
     }
     //Metodos de acceso a la capa controlador
     public clsUsuario getBuscarInformacionUsuarioPorNombre(clsUsuario usuario)

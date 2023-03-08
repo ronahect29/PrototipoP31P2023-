@@ -133,11 +133,11 @@ public class frmLogin extends javax.swing.JFrame {
             try {
                 clsUsuario usuario = new clsUsuario();
           
-                usuario.setNombreUsuario(txtUsuario.getText().trim());
+                usuario.setUsuario(txtUsuario.getText().trim());
                 // Recuperación de información a través de otro objeto
                 usuario = usuario.getBuscarInformacionUsuarioPorNombre(usuario);
-                if (txtContraseña.getText().equals(usuario.getContrasenaUsuario()) && 
-                    txtUsuario.getText().equals(usuario.getNombreUsuario())) {
+                if (txtContraseña.getText().equals(usuario.getPassword()) && 
+                    txtUsuario.getText().equals(usuario.getUsuario())) {
                     JOptionPane.showMessageDialog(null, "Bienvenido al SISTEMA\n", 
                     "Mensaje de bienvenida", JOptionPane.INFORMATION_MESSAGE);
 
